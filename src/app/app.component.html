@@ -333,6 +333,9 @@
 
   <zxing-scanner [formats]="['QR_CODE', 'EAN_13', 'CODE_128', 'DATA_MATRIX']" (scanSuccess)="scanSuccessHandler($event)" #scanner></zxing-scanner>
 
+  <tr *ngFor="let scan of list_codes; let i = index">
+                          <td>{{scan}}</td>
+                      </tr>
   <!-- Links -->
 
 
