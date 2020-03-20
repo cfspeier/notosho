@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'barslide';
+
+  scanSuccessHandler(event): void {
+    console.log(event)
+    alert(event)
+  }
+
 }
