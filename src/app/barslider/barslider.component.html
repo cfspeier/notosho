@@ -40,8 +40,7 @@
               <div class="carousel-item">
                 <img class="d-block w-100" src="assets/imgs/1.png" alt="6barcode">
               </div>
-              <div *ngFor="let scan of data.eanList; index as i">
-                {{i+1}} {{scan}} class="carousel-item">
+              <div *ngFor="let scan of data.eanList; index as i"  {{i+1}} {{scan}} class="carousel-item">
                 <img class="d-block w-100" src="http://www.barcodes4.me/barcode/c39/{{scan}}.png" alt="{{scan}}">
               </div>
             </div>
