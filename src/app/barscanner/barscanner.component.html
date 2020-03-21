@@ -296,12 +296,13 @@
 </style>
 
 <!-- Toolbar -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark bg-black"  >
+<img width=150px src="assets/imgs/logo.png" />
   <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Active</a>
+    <li class="nav-item active noto-nav-item">
+      <a class="nav-link" href="#">Shop</a>
     </li>
-    <li class="nav-item">
+    <!--<li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li>
     <li class="nav-item">
@@ -309,7 +310,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
+    </li> -->
   </ul>
 </nav>
 
@@ -343,14 +344,15 @@
 
   <!-- Highlight Card -->
 
-
-  <zxing-scanner [formats]="[ 'EAN_13']" (scanSuccess)="scanSuccessHandler($event)" #scanner></zxing-scanner>
-
   <tr *ngFor="let scan of list_codes; let i = index">
-    <td>{{scan}}</td>
+    <td class="noto-scan-item">{{scan}}</td>
   </tr>
-  <!-- Links -->
 
+  <button type="button" class="btn btn-dark" (click)="showOverlay()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >Add Item</button>
+
+  <zxing-scanner [style.visibility]="showOverlayScanner ? 'visible' : 'hidden'" class="noto-scanner-overlay" [formats]="[ 'EAN_13']" (scanSuccess)="scanSuccessHandler($event)" #scanner></zxing-scanner>
+
+  <!-- Links -->
 
   <!-- Footer -->
   <footer>

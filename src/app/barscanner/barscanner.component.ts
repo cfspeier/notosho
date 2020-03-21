@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./barscanner.component.css']
 })
 export class BarscannerComponent implements OnInit {
+  showOverlayScanner = false
 
   constructor() { }
 
@@ -17,6 +18,12 @@ export class BarscannerComponent implements OnInit {
   scanSuccessHandler(event): void {
     console.log(event)
     this.list_codes.push(event)
-    alert(event)
+    this.showOverlayScanner = false
+  }
+
+
+
+  showOverlay() : void {
+    this.showOverlayScanner = !this.showOverlayScanner
   }
 }
