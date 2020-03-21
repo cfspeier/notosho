@@ -13,12 +13,12 @@ const app = express();
 //});
 //
 
-//app.use(csp({
-//  directives: {
-//    defaultSrc: [`'self'`],
-//    imgSrc: [`'self'`]
-//  }
-//}))
+app.use(csp({
+  directives: {
+   defaultSrc: [`'self'`],
+   imgSrc: [`'self'`]
+ }
+}));
 
 app.use(express.static(__dirname + '/dist/notosho'));
 
