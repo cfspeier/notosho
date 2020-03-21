@@ -18,11 +18,11 @@
 }
 
 .noto-scan-button {
+    position: absolute;
     font-size: 28pt;
-    margin: auto auto;
-    margin-top:20%;
     width:90%;
-    left:50%;
+    left:5%;
+    bottom:5%;
 }
 
 
