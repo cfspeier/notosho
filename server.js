@@ -15,7 +15,7 @@ var csp = require('helmet-csp');
 //});
 //
 
-,
+
 
 app.use(csp({
   directives: {
