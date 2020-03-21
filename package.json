@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@zxing/ngx-scanner": "^3.0.0",
-    "angular-image-slider": "0.0.9",
     "express": "^4.17.1",
     "helmet": "^3.21.3",
     "helmet-csp": "~2.9.5",
