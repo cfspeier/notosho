@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-barscanner',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class BarscannerComponent implements OnInit {
   showOverlayScanner = false
 
-  constructor() { }
+    constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,9 @@ export class BarscannerComponent implements OnInit {
 
   }
 
+    jumpToSlider () {
+            this.router.navigateByUrl('/barslider');
+    };
 
 
   showOverlay() : void {

@@ -16,8 +16,19 @@
 
 .noto-scan-button {
     font-size: 20pt;
-    margin: 20px
+    margin: 20px auto;
+    width:90%;
 }
+.noto-scan-return-button {
+    font-size: 20pt;
+    margin-left: -25vh;
+    position: absolute;
+    width: 50vh;
+    bottom: 10%;
+    left: 50%;
+
+}
+
 
 
 .noto-scanner-overlay {
@@ -29,21 +40,20 @@
   z-index: 10;
 }
 
-
 .noto-content {
-  height:100%;
+  height:98%;
+  height:98%;
 
 }
 
 
 :host zxing-scanner::ng-deep {
-  height: 0;
   margin: 0 auto;
-  height: 100%;
   object-fit: contain;
+  display: inline-block;
 }
 
 :host zxing-scanner::ng-deep > video {
-  height: 90vh;
+  height: 95vh;
   width:auto;
 }
