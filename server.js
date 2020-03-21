@@ -11,13 +11,14 @@ const app = express();
 //    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
 //    return next();
 //});
+//
 
-app.use(csp({
-  directives: {
-    defaultSrc: [`'self'`],
-    imgSrc: [`'self'`]
-  }
-}))
+//app.use(csp({
+//  directives: {
+//    defaultSrc: [`'self'`],
+//    imgSrc: [`'self'`]
+//  }
+//}))
 
 app.use(express.static(__dirname + '/dist/notosho'));
 
