@@ -56,5 +56,10 @@
   "bugs": {
     "url": "https://github.com/cfspeier/SlideCode/issues"
   },
-  "homepage": "https://github.com/cfspeier/SlideCode#readme"
+  "homepage": "https://github.com/cfspeier/SlideCode#readme",
+  "postinstall": "ng build --aot -prod",
+  "engines": {
+    "node": "10.15.2",
+    "npm": "5.8.0"
+  }
 }
