@@ -27,6 +27,8 @@ var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 //}));
 app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
+app.use(express.static('public'));
+
 app.use(express.static(__dirname + '/dist/barslide'));
 
 app.get('/*', function(req,res) {
