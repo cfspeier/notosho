@@ -19,8 +19,8 @@ var csp = require('helmet-csp');
 
 app.use(csp({
   directives: {
-   defaultSrc: ["'self'", "*", "'unsafe-eval'", "'unsafe-inline'"],
-   scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+   defaultSrc: ["'self'", "'*'", "'unsafe-eval'", "'unsafe-inline'"],
+   scriptSrc: ["'self'", "'*'","'unsafe-inline'", "'unsafe-eval'"],
    imgSrc: [`'self'`]
  }
 }));
