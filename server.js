@@ -4,6 +4,8 @@ const path = require('path');
 
 const app = express();
 
+const csp = require(`helmet-csp`);
+
 // Serve only the static files form the dist directory
 
 
