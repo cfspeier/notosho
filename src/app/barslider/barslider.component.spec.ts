@@ -11,6 +11,7 @@ describe('BarsliderComponent', () => {
       declarations: [ BarsliderComponent ]
     })
     .compileComponents();
+
   }));
 
   beforeEach(() => {
