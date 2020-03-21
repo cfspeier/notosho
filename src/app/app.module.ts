@@ -7,10 +7,14 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderModule } from 'angular-image-slider';
+import { BarsliderComponent } from './barslider/barslider.component';
+import { BarscannerComponent } from './barscanner/barscanner.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BarsliderComponent,
+    BarscannerComponent
   ],
   imports: [
     BrowserModule,
