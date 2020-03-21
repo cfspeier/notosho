@@ -56,4 +56,6 @@
 :host zxing-scanner::ng-deep > video {
   height: 95vh;
   width:auto;
+  max-width: 98vw;
+  max-height: 98vh;
 }
