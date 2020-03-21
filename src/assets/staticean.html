@@ -10,19 +10,31 @@
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */</style><style>
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlYWRiYXJjb2Rlcy9yZWFkYmFyY29kZXMuY29tcG9uZW50LmNzcyJ9 */</style></head>
   <body>
-    <img id="myImage" _ngcontent-cij-c1="" src="https://barcode.tec-it.com/barcode.ashx?data=4751023961194&code=EAN13&dpi=96&dataseparator" style="width:80%;margin:10%" />
+    <img id="myImage" _ngcontent-cij-c1="" src="https://barcode.tec-it.com/barcode.ashx?data=4751023961194&code=EAN13&dpi=96&dataseparator" style="width:80%;margin:10%;visibility: hidden" />
 </body>
 <script>
 var i = 1;
 var eans = ["4024862106300","8801643662226", "4024862106300","8801643662226", "4024862106300","8801643662226", "4024862106300"]
 function myLoop () {           //  create a loop function
   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
-     document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[i] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
+    if(i%2 == 0)
+    {
+      document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[(i)/2] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
+      setTimeout(function () {document.getElementById('myImage').style.visibility = 'visible';}, 100);
+      console.log("visible");
+
+    }
+    else
+    {
+      setTimeout(function () {document.getElementById('myImage').style.visibility = 'hidden';}, 500);
+      console.log("hidden");
+
+    }
      i++;                     //  increment the counter
-     if (i < eans.length) {            //  if the counter < 10, call the loop function
+     if (i < eans.length*2-1) {            //  if the counter < 10, call the loop function
         myLoop();             //  ..  again which will trigger another
      }                        //  ..  setTimeout()
-  }, 3000)
+  }, 1200)
 }
 
 var callback = function(){
