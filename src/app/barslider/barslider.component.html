@@ -11,11 +11,40 @@
 
 
     <ngb-carousel  [interval]=1000  [wrap]=false [showNavigationArrows]=false [showNavigationIndicators]=false>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/init_scan.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/5.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/4.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/3.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/2.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  src="assets/imgs/1.png" width="100%" style="margin: 0 auto;">
+        </div>
+      </ng-template>
       <ng-template ngFor let-scan let-i="index" [ngForOf]="data.eanList">
       <ng-template  ngbSlide>
         <div class="picsum-img-wrapper">
-          <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" alt="Angular Carousel 1" width="50%">
-            {{i}}
+          <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" alt="Angular Carousel 1" width="75%">
         </div>
       </ng-template>
       <ng-template  ngbSlide>
