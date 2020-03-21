@@ -17,13 +17,13 @@ var csp = require('helmet-csp');
 
 
 
-app.use(csp({
-  directives: {
-   defaultSrc: ["'self'", "'*'", "'maxcdn.bootstrapcdn.com'","'code.jquery.com'"],
-   scriptSrc: ["'self'", "'*'","'unsafe-inline'", "'unsafe-eval'"],
-   imgSrc: [`'self'`]
- }
-}));
+//app.use(csp({
+//  directives: {
+//   defaultSrc: ["'self'", "'*'", "'maxcdn.bootstrapcdn.com'","'code.jquery.com'"],
+//   scriptSrc: ["'self'", "'*'","'unsafe-inline'", "'unsafe-eval'"],
+//   imgSrc: [`'self'`]
+ //}
+//}));
 
 app.use(express.static(__dirname + '/dist/barslide'));
 
