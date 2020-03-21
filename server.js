@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 
 
+
 var csp = require('helmet-csp');
 // Serve only the static files form the dist directory
 
@@ -15,7 +16,7 @@ var csp = require('helmet-csp');
 //});
 //
 
-
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 
 //app.use(csp({
 //  directives: {
@@ -24,6 +25,7 @@ var csp = require('helmet-csp');
 //   imgSrc: [`'self'`]
  //}
 //}));
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.use(express.static(__dirname + '/dist/barslide'));
 

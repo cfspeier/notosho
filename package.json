@@ -26,6 +26,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.3.0",
     "@zxing/ngx-scanner": "^3.0.0",
     "express": "^4.17.1",
+    "express-http-to-https": "^1.1.4",
     "helmet": "^3.21.3",
     "helmet-csp": "~2.9.5",
     "path": "^0.12.7",
