@@ -15,6 +15,10 @@ ngOnInit() {
 
 }
 
+public jumpToScanner () {
+      this.router.navigateByUrl('/barscanner');
+};
+
 
   ngAfterViewInit() {
   //  $('.carousel').carousel({

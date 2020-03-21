@@ -16,3 +16,9 @@
   height:100%;
 
 }
+
+.noto-scan-button {
+    font-size: 28pt;
+    margin: 20px auto;
+    width:90%;
+}

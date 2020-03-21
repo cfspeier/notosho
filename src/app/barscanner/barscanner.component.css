@@ -7,20 +7,20 @@
 }
 
 .noto-nav-item {
-    font-size: 22pt;
+    font-size: 28pt;
 }
 
 .noto-scan-item {
-    font-size: 20pt;
+    font-size: 28pt;
 }
 
 .noto-scan-button {
-    font-size: 20pt;
+    font-size: 28pt;
     margin: 20px auto;
     width:90%;
 }
 .noto-scan-return-button {
-    font-size: 20pt;
+    font-size: 28pt;
     margin-left: -25vh;
     position: absolute;
     width: 50vh;
