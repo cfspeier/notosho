@@ -17,12 +17,13 @@
 
 }
 
-<<<<<<< HEAD
 .noto-scan-button {
     font-size: 28pt;
     margin: 20px auto;
     width:90%;
-=======
+}
+
+
 div {
   height: 400px;
   width: 800px;
@@ -32,5 +33,4 @@ div {
   top:50%;
   margin-left:-390px;
   margin-top:-325px;
->>>>>>> 7098f4288d995e2ce3ed21cabfa1b4d96c7425b0
 }
