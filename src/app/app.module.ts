@@ -8,9 +8,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarsliderComponent } from './barslider/barslider.component';
 import { BarscannerComponent } from './barscanner/barscanner.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-declare var $: any;
-console.log(`jQuery version: ${$.fn.jquery}`);
 
 @NgModule({
   declarations: [
@@ -22,7 +21,7 @@ console.log(`jQuery version: ${$.fn.jquery}`);
     BrowserModule,
     AppRoutingModule,
     ZXingScannerModule,
-    /*SliderModule,*/
+    NgbModule,
     BrowserAnimationsModule
   ],
   providers: [],
