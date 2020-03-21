@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SliderModule } from 'angular-image-slider';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +15,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    /*SliderModule,*/
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
