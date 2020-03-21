@@ -11,8 +11,16 @@ export class BarsliderComponent implements OnInit {
 
   constructor(public data: DataService) { }
 
-  ngOnInit() {
+ngOnInit() {
 
+}
+
+
+  ngAfterViewInit() {
+
+    $('.carousel').carousel({
+        interval: 100
+    });
   }
 
 }

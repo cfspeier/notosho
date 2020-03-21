@@ -27,7 +27,7 @@ export class BarscannerComponent implements OnInit {
     this.data.eanList = this.list_codes;
   }
 
-    jumpToSlider () {
+    public jumpToSlider () {
             this.router.navigateByUrl('/barslider');
     };
 

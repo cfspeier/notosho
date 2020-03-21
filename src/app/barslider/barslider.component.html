@@ -11,6 +11,15 @@
 
   <head>
     <title> Barslider </title>
+    <script>
+    $(document).ready(function() {
+            console.log("start");
+             $('.carousel').carousel({
+                 interval: 2000
+             });
+
+        });
+    </script>
   </head>
   <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 0 auto;width:100%">
     <td style="text-align: center;">{{scan}}</td>
@@ -42,5 +51,7 @@
                 <img class="d-block w-100" src="http://www.barcodes4.me/barcode/c39/{{scan}}.png" alt="{{scan}}">
               </div>
             </div>
-          </div>
+            </div>
+
+
 </html>
