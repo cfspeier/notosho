@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-barscanner',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class BarscannerComponent implements OnInit {
   showOverlayScanner = false
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private data: DataService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class BarscannerComponent implements OnInit {
       this.list_codes.push(event)
     }
     this.showOverlayScanner = false
-
+    this.data.eanList = this.list_codes;
   }
 
     jumpToSlider () {

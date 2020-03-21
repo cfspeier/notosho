@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
+
 
 @Component({
   selector: 'app-barslider',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarsliderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+
   }
 
 }

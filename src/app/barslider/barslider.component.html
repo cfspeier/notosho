@@ -12,6 +12,11 @@
   <head>
     <title> Barslider </title>
   </head>
+  <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 0 auto;width:100%">
+    <td style="text-align: center;">{{scan}}</td>
+  </tr>
+
+
           <div id="barcode-slider" class="carousel slide" data-ride="carousel" data-interval="1000" data-wrap="false">
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
@@ -53,6 +58,3 @@
             </div>
           </div>
 </html>
-
-
-
