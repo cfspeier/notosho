@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 
@@ -9,7 +10,7 @@ import { DataService } from "../data.service";
 })
 export class BarsliderComponent implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(private router: Router, public data: DataService) { }
 
 ngOnInit() {
 
@@ -17,6 +18,7 @@ ngOnInit() {
 
 public jumpToScanner () {
       this.router.navigateByUrl('/barscanner');
+
 };
 
 

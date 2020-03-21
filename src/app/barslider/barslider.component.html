@@ -10,7 +10,7 @@
 </nav>
 
 
-    <ngb-carousel  [interval]=1500  [wrap]=false [showNavigationArrows]=false [showNavigationIndicators]=false>
+    <ngb-carousel  [interval]=1200  [wrap]=false [showNavigationArrows]=false [showNavigationIndicators]=false style="margin-top:50px">
       <ng-template  ngbSlide>
         <div class="picsum-img-wrapper">
           <img  src="assets/imgs/init_scan.png" width="100%" style="margin: 0 auto;">
@@ -44,7 +44,7 @@
       <ng-template ngFor let-scan let-i="index" [ngForOf]="data.eanList">
       <ng-template  ngbSlide>
         <div class="picsum-img-wrapper">
-          <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" alt="Angular Carousel 1" width="75%">
+          <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" alt="Angular Carousel 1" width="100%">
         </div>
       </ng-template>
       <ng-template  ngbSlide>
