@@ -7,10 +7,17 @@ const app = express();
 // Serve only the static files form the dist directory
 
 
-app.use(function(req, res, next) {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
-    return next();
-});
+//app.use(function(req, res, next) {
+//    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+//    return next();
+//});
+
+app.use(csp({
+  directives: {
+    defaultSrc: [`'self'`],
+    imgSrc: [`'self'`]
+  }
+}))
 
 app.use(express.static(__dirname + '/dist/notosho'));
 
