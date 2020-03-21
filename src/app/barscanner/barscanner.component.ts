@@ -17,8 +17,12 @@ export class BarscannerComponent implements OnInit {
 
   scanSuccessHandler(event): void {
     console.log(event)
-    this.list_codes.push(event)
+    if(this.showOverlayScanner)
+    {
+      this.list_codes.push(event)
+    }
     this.showOverlayScanner = false
+
   }
 
 
