@@ -4,8 +4,8 @@ const path = require('path');
 
 const app = express();
 
-const csp = require(`helmet-csp`);
 
+var helmet = require('helmet');
 // Serve only the static files form the dist directory
 
 
@@ -15,7 +15,7 @@ const csp = require(`helmet-csp`);
 //});
 //
 
-app.use(csp({
+app.use(helmet.csp({
   directives: {
    defaultSrc: [`'self'`],
    imgSrc: [`'self'`]
