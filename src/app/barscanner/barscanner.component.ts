@@ -12,4 +12,11 @@ export class BarscannerComponent implements OnInit {
   ngOnInit() {
   }
 
+  list_codes = [];
+
+  scanSuccessHandler(event): void {
+    console.log(event)
+    this.list_codes.push(event)
+    alert(event)
+  }
 }
