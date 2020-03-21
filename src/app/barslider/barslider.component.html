@@ -14,7 +14,7 @@
       <ng-template ngFor let-scan let-i="index" [ngForOf]="data.eanList">
       <ng-template  ngbSlide>
         <div class="picsum-img-wrapper">
-          <img src="http://www.barcodes4.me/barcode/c39/{{scan}}.png" alt="Angular Carousel 1" width="50%">
+          <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" alt="Angular Carousel 1" width="50%">
             {{i}}
         </div>
       </ng-template>
