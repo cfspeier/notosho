@@ -17,7 +17,8 @@ var csp = require('helmet-csp');
 
 app.use(csp({
   directives: {
-   defaultSrc: [`'self'`, 'maxcdn.bootstrapcdn.com'],
+   defaultSrc: ["'self'", "*"],
+   scriptSrc: ["'self'", "'unsafe-inline'"],
    imgSrc: [`'self'`]
  }
 }));
