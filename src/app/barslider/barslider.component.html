@@ -10,12 +10,17 @@
 </nav>
 
 
-    <ngb-carousel  [interval]=500  [wrap]=false [showNavigationArrows]=false>
+    <ngb-carousel  [interval]=1000  [wrap]=false [showNavigationArrows]=false>
       <ng-template ngFor let-scan let-i="index" [ngForOf]="data.eanList">
       <ng-template  ngbSlide>
         <div class="picsum-img-wrapper">
           <img src="http://www.barcodes4.me/barcode/c39/{{scan}}.png" alt="Angular Carousel 1" width="50%">
             {{i}}
+        </div>
+      </ng-template>
+      <ng-template  ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img  alt="" width="50%" style="margin: 0 auto;">
         </div>
       </ng-template>
       </ng-template>
