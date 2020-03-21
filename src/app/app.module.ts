@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarsliderComponent } from './barslider/barslider.component';
 import { BarscannerComponent } from './barscanner/barscanner.component';
 
+declare var $: any;
+console.log(`jQuery version: ${$.fn.jquery}`);
+
 @NgModule({
   declarations: [
     AppComponent,

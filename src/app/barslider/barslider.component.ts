@@ -17,9 +17,8 @@ ngOnInit() {
 
 
   ngAfterViewInit() {
-
     $('.carousel').carousel({
-        interval: 100
+        interval: 2000
     });
   }
 
