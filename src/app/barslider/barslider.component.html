@@ -15,8 +15,6 @@
   <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 0 auto;width:100%">
     <td style="text-align: center;">{{scan}}</td>
   </tr>
-
-
           <div id="barcode-slider" class="carousel slide" data-ride="carousel" data-interval="1000" data-wrap="false">
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
@@ -41,7 +39,7 @@
                 <img class="d-block w-100" src="assets/imgs/1.png" alt="6barcode">
               </div>
               <div *ngFor="let scan of data.eanList; index as i">
-                {{i+1}} {{scan}} class="carousel-item">
+                {{i+1}} {{scan}} class="carousel-item"
                 <img class="d-block w-100" src="http://www.barcodes4.me/barcode/c39/{{scan}}.png" alt="{{scan}}">
               </div>
             </div>
