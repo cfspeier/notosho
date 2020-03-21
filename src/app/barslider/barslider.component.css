@@ -29,10 +29,9 @@
 div {
   height: 90%;
   width: 90%;
-  margin: auto auto;
-  /*position: fixed;
+  position: absolute;
   left:50%;
   top:50%;
   margin-left:-45%;
-  margin-top:-45%;*/
+  margin-top:-45%;
 }
