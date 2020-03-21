@@ -9,13 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BarsliderComponent } from './barslider/barslider.component';
 import { BarscannerComponent } from './barscanner/barscanner.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReadbarcodesComponent } from './readbarcodes/readbarcodes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     BarsliderComponent,
-    BarscannerComponent
+    BarscannerComponent,
+    ReadbarcodesComponent
   ],
   imports: [
     BrowserModule,

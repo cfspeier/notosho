@@ -345,7 +345,7 @@
   <!-- Highlight Card -->
   <div [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" style="text-align: center;">
   <h1 style="padding: 20px">Shopping Cart </h1>
-<table width="95%" style="margin:0 auto;">
+  <table width="95%" style="margin:0 auto;">
   <tr *ngFor="let scan of list_codes; let i = index" style="text-align: center;margin: 0 auto;width:100%">
     <td class="noto-scan-item" style="text-align: center;">{{scan}}</td>
   </tr>
@@ -358,9 +358,9 @@
 
 
   <div class="noto-scanner-overlay " [style.visibility]="showOverlayScanner ? 'visible' : 'hidden'">
-    <div style="text-align: center;">
+  <div style="text-align: center;">
   <zxing-scanner  [formats]="[ 'EAN_13']" (scanSuccess)="scanSuccessHandler($event)" #scanner></zxing-scanner>
-    <button  type="button" class="btn btn-dark noto-scan-return-button" (click)="showOverlay()"  >Back to Cart</button>
+  <button  type="button" class="btn btn-dark noto-scan-return-button" (click)="showOverlay()"  >Back to Cart</button>
   </div>
 
   </div>
