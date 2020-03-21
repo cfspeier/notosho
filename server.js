@@ -15,10 +15,12 @@ var csp = require('helmet-csp');
 //});
 //
 
+,
+
 app.use(csp({
   directives: {
-   defaultSrc: ["'self'", "*"],
-   scriptSrc: ["'self'", "'unsafe-inline'"],
+   defaultSrc: ["'self'", "*", "'unsafe-eval'", "'unsafe-inline'"],
+   scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
    imgSrc: [`'self'`]
  }
 }));
