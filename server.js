@@ -22,11 +22,11 @@ app.use(csp({
  }
 }));
 
-app.use(express.static(__dirname + '/dist/notosho'));
+app.use(express.static(__dirname + '/dist/barslide'));
 
 app.get('/*', function(req,res) {
 
-res.sendFile(path.join(__dirname+'/dist/notosho/index.html'));
+res.sendFile(path.join(__dirname +  '/dist/barslide/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
