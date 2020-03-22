@@ -6,18 +6,10 @@ const app = express();
 
 var mysql      = require('mysql');
 
-
+var parseDbUrl = require("parse-database-url");
 var bodyParser     =  require("body-parser");
-
+var conn_details = parseDbUrl(process.env["CLEARDB_DATABASE_URL"]);
 //Here we are configuring express to use body-parser as middle-ware.
-
-conn_details = {
-  host     :  "eu-cdbr-west-02.cleardb.net",
-  user     : 'b11a6f76cb3ab7',
-  password : '23dbfc15',
-  database : 'heroku_cbce75f404b8e2c'
-
-}
 var connection ;
 
 
@@ -128,7 +120,7 @@ app.post('/pgetcartitems', function(req,res) {
   connection.query("SELECT * FROM cart_entries WHERE code='" + req.body.cart_code.toString() + "';", function(err, rows, fields) {
 
     if (err) throw err;
-    
+
 
     var all_eans = [];
     rows.forEach(element => all_eans.push(element.ean));
