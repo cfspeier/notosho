@@ -61,7 +61,13 @@ async function tryToGetNewCartCode(res)
 {
 
   connection = mysql.createConnection(conn_details)
-  newCartCodeNumber++;
+  if(newCartCodeNumber >= 1679500)
+  {
+    newCartCodeNumber++;
+  }
+  else {
+    newCartCodeNumber=1;
+  }
   var consumedCartCode = newCartCodeNumber-1;
   var result = await queryPromise("SELECT * FROM cart_entries WHERE code='" + genCartCodeFromNumber(consumedCartCode) + "';");
   console.log(result)
