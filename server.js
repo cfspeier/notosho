@@ -12,6 +12,18 @@ var conn_details = parseDbUrl(process.env.CLEARDB_DATABASE_URL);
 //Here we are configuring express to use body-parser as middle-ware.
 var connection ;
 
+var schedule = require('node-schedule');
+
+var j = schedule.scheduleJob('1,11,21,31,41,51 * * * *', function(){
+  connection = mysql.createConnection(conn_details)
+
+  connection.query("DELETE FROM cart_entries WHERE timestamp < (NOW() - INTERVAL 3 HOUR);", function(err, rows, fields) {
+
+    if (err) throw err;
+    console.log('DELETED OLD ROWS');
+
+    connection.end();
+});
 
 
 //connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
