@@ -12,7 +12,7 @@
   <body>
     <script>
         var eans = [];
-        var i = 1;
+        var i = 0;
         var showEans = false;
         function myLoop () {           //  create a loop function
           setTimeout(function () {    //  call a 3s setTimeout when the loop is called
@@ -27,7 +27,7 @@
 
             if(i%2 == 0)
             {
-              document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[(i)/2] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
+              document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[i/2] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
               setTimeout(function () {document.getElementById('myImage').style.visibility = 'visible';}, 100);
               console.log("visible");
             }
@@ -65,7 +65,7 @@
                 document.getElementById("enter_title").style.display = 'none';
                 document.getElementById("enter_form").style.display = 'none';
                 document.getElementById("show_title").style.display = 'block';
-                document.getElementById("show_title").innerHTML = 'SHOWING CART '+ document.getElementById("cartcode").value; 
+                document.getElementById("show_title").innerHTML = 'SHOWING CART '+ document.getElementById("cartcode").value;
                 document.getElementById("myImage").style.display = 'block';
                 myLoop();
               }
