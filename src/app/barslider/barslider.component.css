@@ -2,14 +2,22 @@
   background-color: black !important;
 }
 
+.noto-nav {
+  z-index: 200;
+}
+
 .noto-nav-item {
-  font-size: 22pt;
+    font-size: 28pt;
 }
 
-.noto-scan-item {
-  font-size: 20pt;
+.noto-scan-hint {
+  position: absolute;
+  font-size: 24pt;
+  width:90%;
+  left:5%;
+  bottom:12%;
+  text-align: center;
 }
-
 
 .noto-scanner-overlay {
   width:100%;
@@ -22,7 +30,13 @@
     font-size: 28pt;
     width:90%;
     left:5%;
+    min-height: 70px !important;
+    height:7vh;
     bottom:5%;
+    color: #FFF;
+    background-color: #ff62aa;
+    font-weight: 600;
+    border-width: 0px;
 }
 
 

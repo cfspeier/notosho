@@ -8,7 +8,7 @@ var mysql      = require('mysql');
 
 var parseDbUrl = require("parse-database-url");
 var bodyParser     =  require("body-parser");
-var conn_details = parseDbUrl(process.env["CLEARDB_DATABASE_URL"]);
+var conn_details = parseDbUrl(process.env.CLEARDB_DATABASE_URL);
 //Here we are configuring express to use body-parser as middle-ware.
 var connection ;
 
@@ -37,6 +37,9 @@ function genCartCodeFromNumber(num) {
   part3 = Math.floor((num%(36*36))/(36));
   part4 = num%36;
   if(part1 > 25) part1 = -17 + part1 - 25;
+  if(part2 > 25) part2 = -17 + part2 - 25;
+  if(part3 > 25) part3 = -17 + part3 - 25;
+  if(part4 > 25) part4 = -17 + part4 - 25;
 
   return String.fromCharCode(65+part1) + String.fromCharCode(65+part2)  + String.fromCharCode(65+part3)  + String.fromCharCode(65+part4);
 }

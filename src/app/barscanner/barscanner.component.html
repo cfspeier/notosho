@@ -296,27 +296,25 @@
 </style>
 
 <!-- Toolbar -->
-<nav class="navbar navbar-expand-md bg-dark navbar-dark bg-black noto-nav"  >
-<img width=150px src="assets/imgs/logo.png" />
+<nav class="navbar navbar-expand-s bg-dark navbar-dark bg-black noto-nav"  >
   <ul class="navbar-nav">
-    <li class="nav-item active noto-nav-item">
-      <a class="nav-link" href="#">Shop</a>
-    </li>
-    </ul>
+  <li class="nav-item active noto-nav-item nav-link">
+<img width=150px src="assets/imgs/logo.png" />
+</li>
+</ul>
+<ul class="navbar-nav">
+<li class="nav-item active noto-nav-item nav-link">
+  <img width=40px src="assets/imgs/cart.png" /> {{data.eanList.length}}
+</li>
+
+</ul>
     <ul class="navbar-nav">
-    <li class="nav-item active noto-nav-item">
-      CODE: {{data.uniqueCartCode}}
+    <li class="nav-item active noto-nav-item nav-link">
+      CART-CODE: {{data.uniqueCartCode}}
     </li>
-    <!--<li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
-    </li> -->
+
   </ul>
+
 </nav>
 
 <!--<div class="toolbar" role="banner">
@@ -348,21 +346,22 @@
 <div class="noto-content"  style="text-align: center;" role="main">
 
   <!-- Highlight Card -->
+  <button  type="button " class="btn btn-dark btn-block noto-scan-button" (click)="showOverlay()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >SCAN ITEM</button>
+  <button  type="button " class="btn btn-dark btn-block noto-cashier-button" [disabled]="data.eanList.length == 0" (click)="jumpToSlider()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >GO TO CASHIER</button>
   <div [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" style="text-align: center;">
-  <h1 style="padding: 20px">Shopping Cart </h1>
+
   <table width="95%" style="margin:0 auto;">
-  <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 0 auto;width:100%">
-    <td class="noto-scan-item" style="text-align: center;">{{scan}}</td>
+  <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 1% auto;width:100%">
+    <td class="noto-scan-item" style="text-align: center; padding: 1%">{{i+1}}. <img src="https://barcode.tec-it.com/barcode.ashx?data={{scan}}&code=EAN13&dpi=96&dataseparator" style="height: 10vh;" /> </td>
   </tr>
   </table>
-  <button  type="button " class="btn btn-dark btn-block noto-scan-button" (click)="showOverlay()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >Add Item</button>
-  <button  type="button " class="btn btn-dark btn-block noto-scan-button" (click)="jumpToSlider()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >Goto Cashier</button>
   </div>
 
   <div class="noto-scanner-overlay " [style.visibility]="showOverlayScanner ? 'visible' : 'hidden'">
   <div style="text-align: center;">
   <zxing-scanner  [formats]="[ 'EAN_13']" (scanSuccess)="scanSuccessHandler($event)" #scanner></zxing-scanner>
-  <button  type="button" class="btn btn-dark noto-scan-return-button" (click)="showOverlay()"  >Back to Cart</button>
+
+  <button  type="button" class="btn btn-dark btn-primary btn-lg noto-scan-return-button" (click)="showOverlay()"  >BACK TO CART</button>
   </div>
 
   </div>
