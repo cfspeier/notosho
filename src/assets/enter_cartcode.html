@@ -10,13 +10,71 @@
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */</style><style>
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlYWRiYXJjb2Rlcy9yZWFkYmFyY29kZXMuY29tcG9uZW50LmNzcyJ9 */</style></head>
   <body>
-    <h1 align="center" style="font-family: Arial, Helvetica, sans-serif; margin :3% auto;font-size:36pt;"> PLEASE ENTER CART-CODE: </h1>
-    <form>
+    <script>
+        var eans = [];
+        var i = 1;
+        var showEans = false;
+        function myLoop () {           //  create a loop function
+          setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+            if(i%2 == 0)
+            {
+              document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[(i)/2] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
+              setTimeout(function () {document.getElementById('myImage').style.visibility = 'visible';}, 100);
+              console.log("visible");
+            }
+            else
+            {
+              setTimeout(function () {document.getElementById('myImage').style.visibility = 'hidden';}, 500);
+              console.log("hidden");
+            }
+             i++;                     //  increment the counter
+             if (i < eans.length*2-1) {            //  if the counter < 10, call the loop function
+                myLoop();             //  ..  again which will trigger another
+             }                        //  ..  setTimeout()
+          }, 1200)
+        }
+
+        function process()
+        {
+            /*var url = "eink/" + document.getElementById("cartcode").value;
+            location.href = url;
+            return false;*/
+
+            console.log("make request")
+            var http = new XMLHttpRequest();
+            var url = 'pgetcartitems';
+            var params = 'cart_code=' + document.getElementById("cartcode").value;
+            http.open('POST', url, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.onreadystatechange = function() {//Call a function when the state changes.
+              if(http.readyState == 4 && http.status == 200) {
+                var myArr = JSON.parse(this.responseText);
+                eans = myArr.eans;
+                console.log(eans);
+                document.getElementById("enter_title").style.display = 'none';
+                document.getElementById("enter_form").style.display = 'none';
+                document.getElementById("show_title").style.display = 'block';
+                document.getElementById("myImage").style.display = 'block';
+                myLoop();
+              }
+            }
+
+            http.send(params);
+        }
+
+
+    </script>
+
+    <h1 id="show_title" align="center" style="font-family: Arial, Helvetica, sans-serif;display:none"> SHOWING CART  </h1>
+    <img id="myImage" _ngcontent-cij-c1="" src="https://barcode.tec-it.com/barcode.ashx?data=4751023961194&code=EAN13&dpi=96&dataseparator" style="width:80%;margin:10%;display: none" />
+    <h1 id="enter_title" align="center" style="font-family: Arial, Helvetica, sans-serif; margin :3% auto;font-size:36pt;"> PLEASE ENTER CART-CODE: </h1>
+
+    <form id="enter_form">
        <input type="text" id="cartcode" name="cartcode" style="width: 50%; height: 20%;margin: 2%; text-align: center;font-size:36pt; display: block; margin : 3% auto;"  ><br>
-       <input type="submit" value="SEE CART" style="width: 50%; height: 50%;  display: block; margin : 2% auto;font-size:28pt;" >
+       <input type="button" value="SEE CART" style="width: 50%; height: 50%;  display: block; margin : 2% auto;font-size:28pt;" onclick="process()" >
    </form>
 </body>
-<script>
-</script>
+
 
 </html>
+a

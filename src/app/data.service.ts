@@ -24,9 +24,8 @@ export class DataService {
     this.eanList.push(ean);
     if(this.uniqueCartCode != "")
     {
-      this.http.post<any>('paddcartitem', {ean_code: ean, list_rank: this.eanList.length-1, cart_code: this.uniqueCartCode }).subscribe(data => {
-      
-      });
+      this.http.post<any>('paddcartitem', {ean_code: ean, list_rank: (this.eanList.length-1), cart_code: this.uniqueCartCode }).subscribe(data => {
+        });
     }
   }
 

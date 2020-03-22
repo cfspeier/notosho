@@ -23,13 +23,11 @@ function myLoop () {           //  create a loop function
       document.getElementById('myImage').src = "https://barcode.tec-it.com/barcode.ashx?data=" + eans[(i)/2] + "&code=EAN13&dpi=96&dataseparator";       //  your code here
       setTimeout(function () {document.getElementById('myImage').style.visibility = 'visible';}, 100);
       console.log("visible");
-
     }
     else
     {
       setTimeout(function () {document.getElementById('myImage').style.visibility = 'hidden';}, 500);
       console.log("hidden");
-
     }
      i++;                     //  increment the counter
      if (i < eans.length*2-1) {            //  if the counter < 10, call the loop function
@@ -50,7 +48,5 @@ if (
 } else {
   document.addEventListener("DOMContentLoaded", callback);
 }
-
 </script>
-
 </html>

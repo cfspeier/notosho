@@ -22,10 +22,10 @@ export class BarscannerComponent implements OnInit {
     console.log(event)
     if(this.showOverlayScanner)
     {
-      this.list_codes.push(event)
+      this.data.addCartItem(event)
     }
     this.showOverlayScanner = false
-    this.data.eanList = this.list_codes;
+
   }
 
     public jumpToSlider () {

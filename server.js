@@ -105,12 +105,44 @@ app.use(express.static('public'));
 
 app.use(express.static(__dirname + '/dist/barslide'));
 
-
 app.post('/pgetuniquecartcode', function(req,res) {
   console.log("post request")
   tryToGetNewCartCode(res);
 });
 
+app.post('/paddcartitem', function(req,res) {
+  console.log("post request")
+  connection = mysql.createConnection(conn_details)
+  console.log(req.body);
+  console.log("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.body.cart_code + "','"+ req.body.ean_code + "','" + req.body.list_rank + "', NOW());")
+  connection.query("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.body.cart_code + "','"+ req.body.ean_code + "','" + req.body.list_rank + "', NOW());", function(err, rows, fields) {
+    if (err) throw err;
+    res.status(200);
+  });
+  connection.end();
+});
+
+app.post('/pgetcartitems', function(req,res) {
+  connection = mysql.createConnection(conn_details)
+  console.log("SELECT * FROM cart_entries WHERE code='" + req.body.cart_code.toString() + "';")
+  connection.query("SELECT * FROM cart_entries WHERE code='" + req.body.cart_code.toString() + "';", function(err, rows, fields) {
+
+    if (err) throw err;
+    
+
+    var all_eans = [];
+    rows.forEach(element => all_eans.push(element.ean));
+
+    var data = ({
+      eans: all_eans
+    });
+
+    res.status(200).send(data)
+
+    });
+
+    connection.end();
+});
 
 app.get('/*', function(req,res) {
 
@@ -154,6 +186,9 @@ else if(firstroute=="addcartitem")
 else if(firstroute=="getuniquecartcode")
 {
   tryToGetNewCartCode(res);
+}
+else if(firstroute=="eink"){
+  res.sendFile(path.join(__dirname +  '/dist/barslide/assets/enter_cartcode.html'));
 }
 else {
 res.sendFile(path.join(__dirname +  '/dist/barslide/index.html'));

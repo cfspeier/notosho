@@ -302,6 +302,8 @@
     <li class="nav-item active noto-nav-item">
       <a class="nav-link" href="#">Shop</a>
     </li>
+    </ul>
+    <ul class="navbar-nav">
     <li class="nav-item active noto-nav-item">
       CODE: {{data.uniqueCartCode}}
     </li>
@@ -349,16 +351,13 @@
   <div [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" style="text-align: center;">
   <h1 style="padding: 20px">Shopping Cart </h1>
   <table width="95%" style="margin:0 auto;">
-  <tr *ngFor="let scan of list_codes; let i = index" style="text-align: center;margin: 0 auto;width:100%">
+  <tr *ngFor="let scan of data.eanList; let i = index" style="text-align: center;margin: 0 auto;width:100%">
     <td class="noto-scan-item" style="text-align: center;">{{scan}}</td>
   </tr>
   </table>
-
-
   <button  type="button " class="btn btn-dark btn-block noto-scan-button" (click)="showOverlay()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >Add Item</button>
   <button  type="button " class="btn btn-dark btn-block noto-scan-button" (click)="jumpToSlider()" [style.visibility]="showOverlayScanner ? 'hidden' : 'visible'" >Goto Cashier</button>
   </div>
-
 
   <div class="noto-scanner-overlay " [style.visibility]="showOverlayScanner ? 'visible' : 'hidden'">
   <div style="text-align: center;">
