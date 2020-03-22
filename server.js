@@ -24,6 +24,7 @@ var j = schedule.scheduleJob('1,11,21,31,41,51 * * * *', function(){
 
     connection.end();
 });
+});
 
 
 //connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
