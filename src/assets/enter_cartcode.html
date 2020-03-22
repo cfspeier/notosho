@@ -12,14 +12,14 @@
   <body>
     <script>
         var eans = [];
-        var i = -4;
+        var i = -3;
         var showEans = false;
         function myLoop () {           //  create a loop function
           setTimeout(function () {    //  call a 3s setTimeout when the loop is called
             if(i<0)
             {
-              if(i==-4)  document.getElementById('myImage').src = "assets/imgs/init_scan.png";
-              else if(i==-3) document.getElementById('myImage').src = "assets/imgs/3.png";       //  your code here
+
+              if(i==-3) document.getElementById('myImage').src = "assets/imgs/3.png";       //  your code here
               else if(i==-2) document.getElementById('myImage').src = "assets/imgs/2.png";
               else if(i==-1) document.getElementById('myImage').src = "assets/imgs/1.png";
               setTimeout(function () {document.getElementById('myImage').style.visibility = 'visible';}, 100);
@@ -91,15 +91,16 @@
 
     </script>
 
-    <h1 id="show_title" align="center" style="font-family: Arial, Helvetica, sans-serif;display:none"> SHOWING CART  </h1>
-    <img id="myImage" _ngcontent-cij-c1="" src="assets/imgs/init_scan.png" style="width:80%;margin:10%;display: none" />
+    <h1 id="show_title" align="center" style="font-family: Arial, Helvetica, sans-serif;display:none;font-size:20pt;"> SHOWING CART  </h1>
+    <img id="myImage" _ngcontent-cij-c1="" src="assets/imgs/3.png" style="width:80%;margin:10%;display: none" />
     <h1 id="enter_title" align="center" style="font-family: Arial, Helvetica, sans-serif; margin :3% auto;font-size:20pt;"> PLEASE ENTER CART-CODE: </h1>
 
     <form id="enter_form">
        <input type="text" id="cartcode" name="cartcode" style="width: 99%; height: 20%;margin: 1%; text-align: center;font-size:20pt; display: block; margin : 1% auto;"  ><br>
        <input type="button" value="SEE CART" style="width: 99%; height: 50%;  display: block; margin : 1% auto;font-size:20pt;" onclick="process()" >
    </form>
-   <button id="new_cart" onclick="location.reload(); document.getElementById('cartcode').value='';eans=[];i=-4;document.getElementById(myImage').src = 'assets/imgs/init_scan.png';" style="width: 99%; height: 50%;  display: none; margin : 1% auto;font-size:20pt;">SEE NEW CART</button>
+   <div  style="position:absolute;font-size: 18pt;width:90%;left:5%;bottom:10%; text-align: center;"  >PLEASE PRESENT THE SCREEN TO THE SCANNER</div>
+   <button id="new_cart" onclick="location.reload(); document.getElementById('cartcode').value='';eans=[];i=-3;document.getElementById('myImage').src = 'assets/imgs/init_scan.png';" style="width: 99%; height: 50%;  display: none; margin : 1% auto;font-size:20pt;">SEE NEW CART</button>
 </body>
 
 
