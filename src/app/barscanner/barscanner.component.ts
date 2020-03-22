@@ -10,9 +10,10 @@ import { DataService } from "../data.service";
 export class BarscannerComponent implements OnInit {
   showOverlayScanner = false
 
-    constructor(private router: Router, private data: DataService) { }
+    constructor(private router: Router, public data: DataService) { }
 
   ngOnInit() {
+    this.data.getUniqueCartCode();
   }
 
   list_codes = [];

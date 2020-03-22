@@ -10,7 +10,7 @@ import { BarsliderComponent } from './barslider/barslider.component';
 import { BarscannerComponent } from './barscanner/barscanner.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReadbarcodesComponent } from './readbarcodes/readbarcodes.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { ReadbarcodesComponent } from './readbarcodes/readbarcodes.component';
     AppRoutingModule,
     ZXingScannerModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

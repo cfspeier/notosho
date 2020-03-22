@@ -4,6 +4,76 @@ const path = require('path');
 
 const app = express();
 
+var mysql      = require('mysql');
+
+
+var bodyParser     =  require("body-parser");
+
+//Here we are configuring express to use body-parser as middle-ware.
+
+conn_details = {
+  host     :  "eu-cdbr-west-02.cleardb.net",
+  user     : 'b11a6f76cb3ab7',
+  password : '23dbfc15',
+  database : 'heroku_cbce75f404b8e2c'
+
+}
+var connection ;
+
+
+
+//connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+//  if (err) throw err;
+//  console.log('The solution is: ', rows[0].solution);
+//});
+
+
+var newCartCodeNumber = 0
+
+function queryPromise(str) {
+  return new Promise((resolve, reject) => {
+    connection.query(str, (err, result, fields) => {
+      if (err) reject(err);
+      resolve(result);
+    })
+  })
+}
+
+function genCartCodeFromNumber(num) {
+  part1 = Math.floor(num/(36*36*36));
+  part2 = Math.floor((num%(36*36*36))/(36*36));
+  part3 = Math.floor((num%(36*36))/(36));
+  part4 = num%36;
+  if(part1 > 25) part1 = -17 + part1 - 25;
+
+  return String.fromCharCode(65+part1) + String.fromCharCode(65+part2)  + String.fromCharCode(65+part3)  + String.fromCharCode(65+part4);
+}
+
+async function tryToGetNewCartCode(res)
+{
+
+  connection = mysql.createConnection(conn_details)
+  newCartCodeNumber++;
+  var consumedCartCode = newCartCodeNumber-1;
+  var result = await queryPromise("SELECT * FROM cart_entries WHERE code='" + genCartCodeFromNumber(consumedCartCode) + "';");
+  console.log(result)
+  connection.end();
+  //
+  //if (err) throw err;
+
+  if (result.length  > 0) {
+    console.log('already exists');
+    return tryToGetNewCartCode(res);
+  }
+  else {
+    console.log(genCartCodeFromNumber(consumedCartCode));
+    res.status(200).send({"cartcode": genCartCodeFromNumber(consumedCartCode)});
+  }
+
+
+
+}
+
 
 
 var csp = require('helmet-csp');
@@ -27,14 +97,86 @@ var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 //}));
 app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+
 app.use(express.static('public'));
 
 app.use(express.static(__dirname + '/dist/barslide'));
 
+
+app.post('/pgetuniquecartcode', function(req,res) {
+  console.log("post request")
+  tryToGetNewCartCode(res);
+});
+
+
 app.get('/*', function(req,res) {
 
+var firstroute = req.originalUrl.split("/")[1].split("?")[0];
+
+if(firstroute=="getcartitems")
+{
+  connection = mysql.createConnection(conn_details)
+  console.log("SELECT * FROM cart_entries WHERE code='" + req.query.cartcode.toString() + "';")
+  connection.query("SELECT * FROM cart_entries WHERE code='" + req.query.cartcode.toString() + "';", function(err, rows, fields) {
+
+    if (err) throw err;
+    console.log('The solution is: ', rows[0].ean);
+
+    var all_eans = [];
+    rows.forEach(element => all_eans.push(element.ean));
+
+    var data = ({
+      eans: all_eans
+    });
+
+    res.status(200).send(data)
+
+    });
+
+    connection.end();
+}
+else if(firstroute=="addcartitem")
+{
+  connection = mysql.createConnection(conn_details)
+  console.log("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.query.cartcode + "','"+ req.query.ean + "','" + req.query.rank + "', NOW());")
+  connection.query("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.query.cartcode + "','"+ req.query.ean + "','" + req.query.rank + "', NOW());", function(err, rows, fields) {
+
+    if (err) throw err;
+
+    res.status(200);
+
+    });
+    connection.end();
+}
+else if(firstroute=="getuniquecartcode")
+{
+  tryToGetNewCartCode(res);
+}
+else {
 res.sendFile(path.join(__dirname +  '/dist/barslide/index.html'));
+}
 });
+
+//app.get("/getcart/:num", function (req, res) {
+//   var users = [];
+//   var num = req.params.num;
+
+  // connection.connect();
+
+   //connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+   //  if (err) throw err;
+   //  console.log('The solution is: ', rows[0].solution);
+   //});
+
+   //connection.end();
+
+
+  // res.status(200).send(users);
+
+ //});
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
