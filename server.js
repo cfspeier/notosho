@@ -1,16 +1,18 @@
 //Install express server
 const express = require('express');
 const path = require('path');
+var mysql      = require('mysql');
+var parseDbUrl = require("parse-database-url");
+var bodyParser     =  require("body-parser");
+var csp = require('helmet-csp');
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+
 
 const app = express();
 
-var mysql      = require('mysql');
-
-var parseDbUrl = require("parse-database-url");
-var bodyParser     =  require("body-parser");
 var conn_details = parseDbUrl(process.env.CLEARDB_DATABASE_URL);
 //Here we are configuring express to use body-parser as middle-ware.
-var connection ;
+var connection;
 
 var schedule = require('node-schedule');
 
@@ -25,12 +27,6 @@ var j = schedule.scheduleJob('1,11,21,31,41,51 * * * *', function(){
     connection.end();
 });
 });
-
-
-//connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-//  if (err) throw err;
-//  console.log('The solution is: ', rows[0].solution);
-//});
 
 
 var newCartCodeNumber = 0
@@ -57,8 +53,18 @@ function genCartCodeFromNumber(num) {
   return String.fromCharCode(65+part1) + String.fromCharCode(65+part2)  + String.fromCharCode(65+part3)  + String.fromCharCode(65+part4);
 }
 
+
+function add_stats(name)
+{
+    console.log("addidng stats "+ name)
+    connection = mysql.createConnection(conn_details);
+    connection.query("UPDATE stats set value = value + 1 where name = '"+ name +"';");
+    connection.end();
+}
+
 async function tryToGetNewCartCode(res)
 {
+
 
   connection = mysql.createConnection(conn_details)
   if(newCartCodeNumber >= 1679500)
@@ -71,6 +77,7 @@ async function tryToGetNewCartCode(res)
   }
   var consumedCartCode = newCartCodeNumber-1;
   var result = await queryPromise("SELECT * FROM cart_entries WHERE code='" + genCartCodeFromNumber(consumedCartCode) + "';");
+
   console.log(result)
   connection.end();
   //
@@ -83,33 +90,18 @@ async function tryToGetNewCartCode(res)
   else {
     console.log(genCartCodeFromNumber(consumedCartCode));
     res.status(200).send({"cartcode": genCartCodeFromNumber(consumedCartCode)});
+    add_stats("opened_carts");
   }
-
-
 
 }
 
 
 
-var csp = require('helmet-csp');
 // Serve only the static files form the dist directory
 
 
-//app.use(function(req, res, next) {
-//    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
-//    return next();
-//});
-//
 
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 
-//app.use(csp({
-//  directives: {
-//   defaultSrc: ["'self'", "'*'", "'maxcdn.bootstrapcdn.com'","'code.jquery.com'"],
-//   scriptSrc: ["'self'", "'*'","'unsafe-inline'", "'unsafe-eval'"],
-//   imgSrc: [`'self'`]
- //}
-//}));
 app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -126,83 +118,50 @@ app.post('/pgetuniquecartcode', function(req,res) {
 });
 
 app.post('/paddcartitem', function(req,res) {
-  console.log("post request")
+
+
+
   connection = mysql.createConnection(conn_details)
-  console.log(req.body);
-  console.log("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.body.cart_code + "','"+ req.body.ean_code + "','" + req.body.list_rank + "', NOW());")
+
   connection.query("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.body.cart_code + "','"+ req.body.ean_code + "','" + req.body.list_rank + "', NOW());", function(err, rows, fields) {
     if (err) throw err;
     res.status(200);
+    add_stats("added_items");
   });
+
   connection.end();
+
+
+
 });
 
 app.post('/pgetcartitems', function(req,res) {
+
+
   connection = mysql.createConnection(conn_details)
   console.log("SELECT * FROM cart_entries WHERE code='" + req.body.cart_code.toString() + "';")
   connection.query("SELECT * FROM cart_entries WHERE code='" + req.body.cart_code.toString() + "';", function(err, rows, fields) {
 
     if (err) throw err;
 
-
     var all_eans = [];
     rows.forEach(element => all_eans.push(element.ean));
-
-    var data = ({
-      eans: all_eans
-    });
-
+    var data = ({eans: all_eans});
     res.status(200).send(data)
+    add_stats("eink_reads");
 
     });
 
     connection.end();
+
+
 });
 
 app.get('/*', function(req,res) {
 
 var firstroute = req.originalUrl.split("/")[1].split("?")[0];
 
-if(firstroute=="getcartitems")
-{
-  connection = mysql.createConnection(conn_details)
-  console.log("SELECT * FROM cart_entries WHERE code='" + req.query.cartcode.toString() + "';")
-  connection.query("SELECT * FROM cart_entries WHERE code='" + req.query.cartcode.toString() + "';", function(err, rows, fields) {
-
-    if (err) throw err;
-    console.log('The solution is: ', rows[0].ean);
-
-    var all_eans = [];
-    rows.forEach(element => all_eans.push(element.ean));
-
-    var data = ({
-      eans: all_eans
-    });
-
-    res.status(200).send(data)
-
-    });
-
-    connection.end();
-}
-else if(firstroute=="addcartitem")
-{
-  connection = mysql.createConnection(conn_details)
-  console.log("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.query.cartcode + "','"+ req.query.ean + "','" + req.query.rank + "', NOW());")
-  connection.query("INSERT into cart_entries (code,ean,rank,timestamp) value ('" + req.query.cartcode + "','"+ req.query.ean + "','" + req.query.rank + "', NOW());", function(err, rows, fields) {
-
-    if (err) throw err;
-
-    res.status(200);
-
-    });
-    connection.end();
-}
-else if(firstroute=="getuniquecartcode")
-{
-  tryToGetNewCartCode(res);
-}
-else if(firstroute=="eink"){
+if(firstroute=="eink"){
   res.sendFile(path.join(__dirname +  '/dist/barslide/assets/enter_cartcode.html'));
 }
 else {
